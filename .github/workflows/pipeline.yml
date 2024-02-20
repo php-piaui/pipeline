@@ -55,7 +55,7 @@ jobs:
   deploy-develop:
     name: Deploy to dev Enviroment
     runs-on: ubuntu-latest
-    needs: deploy-develop
+    needs: ci
     environment:
       name: develop
       url: pipelinedevelop.phppiaui.com.br
