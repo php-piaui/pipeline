@@ -58,7 +58,7 @@ jobs:
     needs: deploy-develop
     environment:
       name: develop
-      url: 'pepilinedevelop.${{ secrets.FTP_HOST }}'
+      url: pepilinedevelop.${{ secrets.FTP_HOST }}
     steps:
       - name: Deploy
         run: echo "Deploying to develop environment"
@@ -69,7 +69,7 @@ jobs:
     needs: deploy-develop
     environment:
       name: homologacao
-      url: 'pepilinehomologacao.${{ secrets.FTP_HOST }}'
+      url: pepilinehomologacao.${{ secrets.FTP_HOST }}
     steps:
       - name: Deploy
         run: echo "Deploying to homologacao environment"
