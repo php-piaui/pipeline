@@ -63,8 +63,8 @@ jobs:
       - name: Deploy
         run: echo "Deploying to develop environment"
 
-      - name: Deploy ${{ vars.SERVER_DIR }}
-        uses: SamKirkland/FTP-Deploy-Action@master
+      - name: Deploy to ${{ vars.SERVER_DIR }}
+        uses: SamKirkland/FTP-Deploy-Action@4.3.4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
