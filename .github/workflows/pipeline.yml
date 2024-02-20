@@ -63,6 +63,14 @@ jobs:
       - name: Deploy
         run: echo "Deploying to develop environment"
 
+      - name: Deploy ${{ vars.SERVER_DIR }}
+        uses: SamKirkland/FTP-Deploy-Action@master
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ vars.SERVER_DIR }}
+
   deploy-homologacao:
     name: Deploy to hmg Enviroment
     runs-on: ubuntu-latest
