@@ -96,6 +96,28 @@ jobs:
       - name: Deploy
         run: echo "Deploying to homologacao environment"
 
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to ${{ vars.SERVER_DIR }}
+        uses: SamKirkland/FTP-Deploy-Action@master
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ vars.SERVER_DIR }}
+
+      - name: Executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ${{ vars.SERVER_DIR }}
+            composer update
+
   deploy-producao:
     name: Deploy to prod Enviroment
     runs-on: ubuntu-latest
@@ -106,3 +128,25 @@ jobs:
     steps:
       - name: Deploy
         run: echo "Deploying to production environment"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to ${{ vars.SERVER_DIR }}
+        uses: SamKirkland/FTP-Deploy-Action@master
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ vars.SERVER_DIR }}
+
+      - name: Executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ${{ vars.SERVER_DIR }}
+            composer update
