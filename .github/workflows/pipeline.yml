@@ -63,6 +63,9 @@ jobs:
       - name: Deploy
         run: echo "Deploying to develop environment"
 
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Deploy to ${{ vars.SERVER_DIR }}
         uses: SamKirkland/FTP-Deploy-Action@4.3.4
         with:
