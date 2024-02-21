@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest, windows-latest, macos-latest]
-        php-versions: ['8.1', '8.2', '8.3']
+        php-versions: ["8.1", "8.2", "8.3"]
 
     steps:
       - name: Checkout
@@ -83,7 +83,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd ${{ vars.SERVER_DIR }}
-            composer update
+            chmod +x script.sh && ./script.sh
 
   deploy-homologacao:
     name: Deploy to hmg Enviroment
@@ -116,7 +116,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd ${{ vars.SERVER_DIR }}
-            composer update
+            chmod +x script.sh && ./script.sh
 
   deploy-producao:
     name: Deploy to prod Enviroment
@@ -149,4 +149,4 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd ${{ vars.SERVER_DIR }}
-            composer update
+            chmod +x script.sh && ./script.sh
